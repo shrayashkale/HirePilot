@@ -1,28 +1,26 @@
-// ─── Gemini client (browser-direct via REST; key in localStorage) ─────
+// ─── Gemini client ─────────────────────────────────────────────────────
+// Browsers can't call Gemini directly (no CORS headers), so generation goes
+// through our thin Vercel proxy at /api/gemini. Key lives in localStorage,
+// sent per-request, never stored server-side.
 // Used by the built-in agent for: cover letters, skill extraction,
 // company-intel summaries, prefill answers.
-
-const GEMINI_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 export async function geminiGenerate(
   apiKey: string,
   prompt: string,
   opts: { model?: string; maxTokens?: number } = {},
 ): Promise<string> {
-  // gemini-2.5-flash burns most of its output budget on chain-of-thought
-  // tokens (finishReason MAX_TOKENS with truncated text); 3.5-flash-lite
-  // returns complete generations. Verified 2026-10-08.
-  const model = opts.model ?? 'gemini-3.5-flash-lite';
-  const url = `${GEMINI_BASE}/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
-  const res = await fetch(url, {
+  const res = await fetch('/api/gemini', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: {
-        maxOutputTokens: opts.maxTokens ?? 1024,
-        temperature: 0.7,
-      },
+      key: apiKey,
+      prompt,
+      // gemini-2.5-flash burns most of its output budget on chain-of-thought
+      // tokens (finishReason MAX_TOKENS with truncated text); 3.5-flash-lite
+      // returns complete generations. Verified 2026-10-08.
+      model: opts.model ?? 'gemini-3.5-flash-lite',
+      maxTokens: opts.maxTokens ?? 1024,
     }),
   });
   if (!res.ok) {
@@ -30,6 +28,7 @@ export async function geminiGenerate(
     throw new Error(`Gemini ${res.status}: ${text.slice(0, 300)}`);
   }
   const data = await res.json();
+  if (data.error) throw new Error(`Gemini: ${data.error.message ?? JSON.stringify(data.error).slice(0, 200)}`);
   const parts = data.candidates?.[0]?.content?.parts ?? [];
   return parts.map((p: any) => p.text ?? '').join('').trim();
 }

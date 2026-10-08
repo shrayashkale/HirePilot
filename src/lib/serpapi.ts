@@ -1,13 +1,13 @@
-// ─── SerpApi client (browser-direct; key lives in localStorage) ──────
-// Engines used: google_jobs (listings), google_news (company intel),
-// google (organic search — company background).
+// ─── SerpApi client ────────────────────────────────────────────────────
+// Browsers can't call SerpApi directly (no CORS headers), so all calls go
+// through our thin Vercel proxy at /api/serpapi, which forwards to SerpApi.
+// The user's key is theirs: stored in their browser, sent per-request, never stored server-side.
+// Engines used: google_jobs (listings), google_news (company intel), google (company background).
 
 import type { Job, CompanyIntel } from '../types';
 
-const BASE = 'https://serpapi.com/search.json';
-
 async function callSerpApi(key: string, params: Record<string, string>) {
-  const url = new URL(BASE);
+  const url = new URL('/api/serpapi', window.location.origin);
   for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
   url.searchParams.set('api_key', key);
   const res = await fetch(url.toString());
