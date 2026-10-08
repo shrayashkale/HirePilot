@@ -7,7 +7,7 @@ Submit via the official dashboard: serpapi.github.io/serpapi-india-hackathon-202
 
 | Item | Status |
 |---|---|
-| Public GitHub repo (`shrayashkale/HirePilot`) | Repo created, code committed locally — **push blocked by network from the VM** (retry from an unrestricted connection; fallback commands below) |
+| Public GitHub repo (`shrayashkale/HirePilot`) | ✅ Live — code pushed, plus DEMO_SCRIPT.md + SUBMISSION.md |
 | Setup instructions | ✅ In README (`npm install && npm run dev`) |
 | Demo video < 3 min | **Needs filming** — shot list in DEMO_SCRIPT.md; needs SerpApi + Gemini keys to record live |
 | Project description + track | Draft below; **needs your track confirmation** |
