@@ -9,7 +9,10 @@ export async function geminiGenerate(
   prompt: string,
   opts: { model?: string; maxTokens?: number } = {},
 ): Promise<string> {
-  const model = opts.model ?? 'gemini-2.5-flash';
+  // gemini-2.5-flash burns most of its output budget on chain-of-thought
+  // tokens (finishReason MAX_TOKENS with truncated text); 3.5-flash-lite
+  // returns complete generations. Verified 2026-10-08.
+  const model = opts.model ?? 'gemini-3.5-flash-lite';
   const url = `${GEMINI_BASE}/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
   const res = await fetch(url, {
     method: 'POST',
