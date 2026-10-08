@@ -27,10 +27,20 @@ Any personal AI agent (Moltbot, OpenClaw, Hermes…) can plug into the open
 
 ```bash
 npm install
-npm run dev
+npm run serve
 ```
 
 Open http://localhost:5173, paste your keys, upload a resume, hunt.
+
+> Why a server? Browsers can't call SerpApi/Gemini directly (neither sends CORS
+> headers), so `server.mjs` serves the frontend **and** proxies `/api/*` to both
+> APIs. Your keys stay yours: stored in your browser, forwarded per request,
+> never stored server-side. The `api/` directory holds the same proxies as
+> Vercel serverless functions for one-click Vercel deploys.
+
+**Test on your phone (same WiFi):** run `npm run serve` on your computer, then
+open `http://<your-computer-ip>:5173` on your phone. Or use GitHub Codespaces
+with port 5173 forwarded as public.
 
 Keys:
 - SerpApi — free at [serpapi.com](https://serpapi.com) (250 searches/month)
