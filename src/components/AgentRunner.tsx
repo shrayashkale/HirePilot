@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Job, Resume, AgentRun, Application } from '../types';
-import { runAgentApply } from '../lib/agent';
+import { runAgentApply, buildPrefillAnswers, buildResumePayload } from '../lib/agent';
 import { store } from '../lib/storage';
 
 export default function AgentRunner({
@@ -41,6 +41,34 @@ export default function AgentRunner({
   };
 
   const readyApps = applications.filter((a) => a.status === 'ready' && selectedIds.has(a.jobId));
+
+  /** Export the apply pack for the desktop agent (Selenium form-filler). */
+  const exportPack = () => {
+    const pack = {
+      exportedAt: Date.now(),
+      exportedBy: 'HirePilot',
+      resume: buildResumePayload(resume),
+      jobs: readyApps.map((a) => {
+        const job = jobs.find((j) => j.id === a.jobId)!;
+        return {
+          id: job.id,
+          title: job.title,
+          company: job.company,
+          location: job.location,
+          applyUrl: job.applyUrl,
+          coverLetter: a.coverLetter ?? job.coverLetter ?? '',
+          prefill: buildPrefillAnswers(resume),
+        };
+      }),
+    };
+    const blob = new Blob([JSON.stringify(pack, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'hirepilot-apply-pack.json';
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="glass rounded-2xl p-5">
@@ -91,6 +119,13 @@ export default function AgentRunner({
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">
             Ready to fire ({readyApps.length})
           </p>
+          <button
+            onClick={exportPack}
+            title="Download the apply pack, then run the HirePilot desktop agent — it opens each portal and fills the forms from your resume. You review and submit."
+            className="w-full mb-3 rounded-xl py-2.5 font-bold text-sm bg-gradient-to-r from-violet-500 to-fuchsia-600 text-white hover:brightness-110 transition shadow-lg shadow-fuchsia-500/20"
+          >
+            🤖 Export apply pack — desktop agent fills the forms
+          </button>
           <div className="space-y-2">
             {readyApps.map((a) => {
               const job = jobs.find((j) => j.id === a.jobId);

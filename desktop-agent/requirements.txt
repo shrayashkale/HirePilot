@@ -1,0 +1,2 @@
+# HirePilot desktop agent — the hands that fill the forms
+selenium>=4.20
