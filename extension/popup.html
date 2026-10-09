@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { width: 300px; margin: 0; padding: 18px; font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+  h1 { font-size: 15px; margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
+  .logo { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, #22d3ee, #3b82f6); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0f172a; }
+  p { font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 8px 0 14px; }
+  button.main { width: 100%; padding: 12px; border: 0; border-radius: 12px; font-size: 14px; font-weight: 800; cursor: pointer;
+    background: linear-gradient(90deg, #22d3ee, #3b82f6); color: #0f172a; }
+  button.main:disabled { opacity: .4; cursor: not-allowed; }
+  button.ghost { width: 100%; margin-top: 8px; padding: 9px; border-radius: 10px; font-size: 12px; cursor: pointer;
+    background: transparent; color: #94a3b8; border: 1px solid #334155; }
+  #status { font-size: 12px; margin-top: 10px; min-height: 18px; color: #94a3b8; }
+  .ok { color: #34d399 !important; } .warn { color: #fbbf24 !important; }
+</style>
+</head>
+<body>
+  <h1><span class="logo">H</span> HirePilot Autofill</h1>
+  <p id="blurb">On any job application page, hit the button — the agent reads the form, fills it from your resume, and leaves it for your review.</p>
+  <button class="main" id="fill">⚡ Autofill this form</button>
+  <button class="ghost" id="setup">⚙️ Setup — key &amp; profile</button>
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

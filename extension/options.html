@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HirePilot Autofill — Setup</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 32px 16px; }
+  .wrap { max-width: 560px; margin: 0 auto; }
+  h1 { font-size: 20px; display: flex; align-items: center; gap: 10px; }
+  .logo { width: 32px; height: 32px; border-radius: 10px; background: linear-gradient(135deg, #22d3ee, #3b82f6); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0f172a; }
+  p.sub { color: #94a3b8; font-size: 13px; line-height: 1.6; }
+  label { display: block; font-size: 12px; font-weight: 700; color: #94a3b8; margin: 14px 0 6px; text-transform: uppercase; letter-spacing: .06em; }
+  input, textarea { width: 100%; box-sizing: border-box; background: #1e293b; border: 1px solid #334155; color: #e2e8f0;
+    border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; }
+  input:focus, textarea:focus { outline: none; border-color: #22d3ee; }
+  textarea { min-height: 90px; resize: vertical; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  button.save { margin-top: 20px; width: 100%; padding: 13px; border: 0; border-radius: 12px; font-size: 15px; font-weight: 800;
+    cursor: pointer; background: linear-gradient(90deg, #22d3ee, #3b82f6); color: #0f172a; }
+  #saved { margin-top: 12px; font-size: 13px; color: #34d399; min-height: 20px; text-align: center; }
+  .note { margin-top: 24px; font-size: 12px; color: #64748b; line-height: 1.6; border-top: 1px solid #1e293b; padding-top: 16px; }
+  a { color: #22d3ee; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1><span class="logo">H</span> HirePilot Autofill — Setup</h1>
+  <p class="sub">One-time setup. Your key and profile stay in <b>this browser only</b> — nothing is uploaded anywhere. The agent uses them to fill application forms you open.</p>
+
+  <label>Gemini API key</label>
+  <input id="geminiKey" type="password" placeholder="AIza…" autocomplete="off">
+  <p class="sub">Free at <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>. Powers the brain that maps resume → form fields.</p>
+
+  <div class="row">
+    <div><label>Full name</label><input id="name" placeholder="Aarav Sharma"></div>
+    <div><label>Email</label><input id="email" type="email" placeholder="you@mail.com"></div>
+  </div>
+  <div class="row">
+    <div><label>Phone</label><input id="phone" placeholder="+91 98XXXXXXXX"></div>
+    <div><label>Location</label><input id="location" placeholder="Nashik, India"></div>
+  </div>
+  <div class="row">
+    <div><label>Current / target title</label><input id="title" placeholder="Frontend Developer"></div>
+    <div><label>Years of experience</label><input id="yearsTotal" type="number" min="0" placeholder="2"></div>
+  </div>
+  <label>LinkedIn URL</label>
+  <input id="linkedin" placeholder="https://linkedin.com/in/you">
+  <label>Skills (comma separated)</label>
+  <input id="skills" placeholder="React, TypeScript, Python, SQL">
+  <label>Professional summary</label>
+  <textarea id="summary" placeholder="2-3 lines about you…"></textarea>
+  <label>Work history (one role per line: Title at Company — duration)</label>
+  <textarea id="experience" placeholder="Frontend Intern at Acme — 6 months"></textarea>
+  <label>Education (one per line)</label>
+  <textarea id="education" placeholder="BTech, JIT Nashik — 2028"></textarea>
+
+  <button class="save" id="save">💾 Save — done, go apply</button>
+  <div id="saved"></div>
+
+  <div class="note">
+    <b>How it works:</b> open any job application page → click the HirePilot icon → <b>⚡ Autofill this form</b>.
+    The agent reads the form, maps your profile onto it with Gemini, and types everything in while you watch.
+    It <b>never clicks submit</b> — legal, demographic and salary questions are left blank for you. You review, you fire.
+  </div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>

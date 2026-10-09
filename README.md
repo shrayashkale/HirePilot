@@ -21,7 +21,8 @@ Any personal AI agent (Moltbot, OpenClaw, Hermes…) can plug into the open
 - 📊 **Skill demand radar** — what listings ask for vs. what you have; gaps highlighted
 - 💰 **Salary signals** — pay ranges aggregated from live listings
 - 🤖 **Built-in agent** — "Agent Apply": tailored cover letter per job, pre-filled answers, guided submit loop (~10s/job)
-- 🖥️ **Desktop agent** — Python + Selenium companion that opens each selected job's real application portal in your own Chrome, reads never-before-seen forms, maps every field onto your resume via Gemini, and fills them live while you watch. It never clicks submit — you review and fire. See `desktop-agent/README.md`
+- 🖥️ **Autofill extension** — Chrome extension (`extension/`): on any application page, hit ⚡ and the agent reads never-before-seen forms, maps every field onto your resume via Gemini, and fills them live. Never clicks submit — you review and fire. *This is the demo moment.*
+- 🐍 **Desktop agent** (alt path) — Python + Selenium companion in `desktop-agent/` that batch-fills from an exported apply pack. The extension is the recommended path.
 - 🔌 **Open Agent API** — any external agent can pull apply packages as structured JSON
 
 ## Run it

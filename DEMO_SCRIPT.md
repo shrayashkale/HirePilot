@@ -31,14 +31,14 @@ Record at 1080p, keep the browser window focused, hide bookmarks/key fields when
 **Say/show:** "Select jobs and hit Agent Apply. The built-in agent writes a tailored cover letter per role, pre-fills the application answers, and queues everything — about ten seconds a job."
 **Action:** Select jobs, run Agent Apply, show generated letters + the ready queue.
 
-## Shot 6 — THE MOMENT: desktop agent fills real forms (2:05–2:45) ⭐
-**On screen:** Terminal + Chrome. (Prereq: `pip install -r requirements.txt`, Chrome closed once, `hirepilot-apply-pack.json` exported from the app via the 🤖 button.)
-**Say/show:** "Now the part no job tool does. HirePilot's desktop agent opens each real application portal in your own Chrome, reads the form it's never seen before, figures out where every resume detail goes, and fills it — while you watch."
+## Shot 6 — THE MOMENT: extension autofills a real form (2:05–2:45) ⭐
+**On screen:** a real job application page in Chrome. (Prereq: extension loaded via `chrome://extensions` → Developer mode → Load unpacked → `extension/` folder; one-time Setup with Gemini key + profile done.)
+**Say/show:** "Now the part no job tool does. HirePilot's browser extension reads any application form — even ones it's never seen — figures out where every resume detail goes, and fills it live."
 **Action:**
-1. Hit **🤖 Export apply pack** in the app (downloads the JSON).
-2. In the terminal: `python apply_agent.py --pack hirepilot-apply-pack.json --resume-pdf ~/resume.pdf`, paste the Gemini key.
-3. Chrome opens — the agent jumps job to job, **typing your details into live application forms by itself**. Linger on one form filling.
-4. Show the review checklist + the open tabs: "It never clicks submit — that's your call. It does the typing, you do the deciding."
+1. Open a real application page (a Greenhouse/Lever-style form is ideal).
+2. Click the HirePilot icon → **⚡ Autofill this form**.
+3. **Watch the form fill itself on camera** — name, email, phone, dropdowns, the "why you" box. Linger here; this is the shot that wins.
+4. Show the toast checklist: "It leaves legal and salary questions for me — and it never clicks submit. That's my call. It does the typing, I do the deciding."
 
 ## Shot 7 — Open Agent API (2:45–2:55)
 **On screen:** AGENT_API.md open on GitHub (or in the editor).
