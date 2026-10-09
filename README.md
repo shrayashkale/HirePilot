@@ -58,8 +58,10 @@ Keys:
 
 ## Tech
 
-Vite + React + TypeScript + Tailwind v4. Zero backend — SerpApi and Gemini are
-called directly from the browser; state lives in localStorage.
+Vite + React + TypeScript + Tailwind v4. Thin same-origin server (`server.mjs`):
+serves the static app and proxies `/api/*` to SerpApi/Gemini (browsers can't
+call them directly — neither sends CORS headers). Keys and state live in the
+browser's localStorage; nothing is stored server-side.
 
 ## License
 

@@ -1,6 +1,6 @@
 # HirePilot demo video — shot list (under 3 minutes)
 
-Official guidance: show the project **running locally**, a simple screen recording is enough, narration is optional, video quality does not affect judging. **Prereqs:** `npm run dev` running, real SerpApi + Gemini keys pasted at the gate (free tiers work), a resume file ready. Use a narrow job query (e.g. "frontend developer India") to conserve SerpApi credits — each hunt costs searches.
+Official guidance: show the project **running locally**, a simple screen recording is enough, narration is optional, video quality does not affect judging. **Prereqs:** `npm run serve` running (serves the app **and** the `/api/*` SerpApi/Gemini proxies on http://localhost:5173 — plain `npm run dev` does NOT serve the proxies, so every live feature would fail; see README). Real SerpApi + Gemini keys pasted at the gate (free tiers work), a resume file ready. Use a narrow job query (e.g. "frontend developer India") to conserve SerpApi credits — each hunt costs searches.
 
 Record at 1080p, keep the browser window focused, hide bookmarks/key fields when pasting keys (or cut that shot in edit). Narration optional — on-screen text or a voiceover track both fine. Target: **2:30–2:50 total.**
 

@@ -8,7 +8,7 @@ Submit via the official dashboard: serpapi.github.io/serpapi-india-hackathon-202
 | Item | Status |
 |---|---|
 | Public GitHub repo (`shrayashkale/HirePilot`) | ✅ Live — code pushed, plus DEMO_SCRIPT.md + SUBMISSION.md |
-| Setup instructions | ✅ In README (`npm install && npm run dev`) |
+| Setup instructions | ✅ In README (`npm install && npm run serve`) |
 | Demo video < 3 min | **Needs filming** — shot list in DEMO_SCRIPT.md; needs SerpApi + Gemini keys to record live |
 | Project description + track | Draft below; **needs your track confirmation** |
 | Participant details | You fill: name, email, phone, occupation, years of experience (solo entry — no teammates) |
